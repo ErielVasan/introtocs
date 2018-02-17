@@ -42,7 +42,7 @@ else:
 				x -= 4 * 10 ** (n - 1)
 				break
 
-			else:							   #check of 1s
+			else				   #check of 1s
 				latinString += latin[(6 - n) * 4 + 3]
 				x -= 1 * 10 ** (n - 1)
 				iCheck = True
