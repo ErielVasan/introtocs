@@ -1,6 +1,7 @@
 #integer input and check
 
 x = input("Give an integer between 1-1000000: ")
+
 while (not (isinstance(x, int)) or x > 1000000 or x < 1):
 	x = input("I asked for an integer between 1-1000000...: ")
 
@@ -10,13 +11,18 @@ latin = ["[C][M]", "[D]", "[C][D]", "[C]", "[X][C]", "[L]", "[X][L]", "[X]", "M[
 
 
 #conversion process
+
 latinString = ""
+
 if (x == 1000000):
 	latinString = "[M]"
+
 else:
 	for n in xrange(len(str(x)), 0, -1):
 		iCheck = False
+		
 		while (x / 10 ** (n - 1) > 0):
+			
 			if (iCheck == True): #check if there has been another check before
 				latinString += latin[(6 - n) * 4 + 3]
 				x -= 1* 10 ** (n - 1)
@@ -40,4 +46,5 @@ else:
 				latinString += latin[(6 - n) * 4 + 3]
 				x -= 1 * 10 ** (n - 1)
 				iCheck = True
+
 print latinString
