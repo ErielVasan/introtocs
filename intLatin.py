@@ -18,7 +18,7 @@ if (x == 1000000):
 	latinString = "[M]"
 
 else:
-	for n in xrange(len(str(x)), 0, -1):
+	for n in xrange(len(x), 0, -1):
 		iCheck = False
 		
 		while (x / 10 ** (n - 1) > 0):
