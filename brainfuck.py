@@ -15,7 +15,6 @@ if code == "":
 codePosition = 0
 memory = [0]
 memoryPosition = 0
-output = ""
 
 while codePosition < len(code):
 	
@@ -44,7 +43,7 @@ while codePosition < len(code):
 			memory[memoryPosition] = 255
 
 	elif code[codePosition] == ".": #output current cell value in ASCII
-		sys.stdout.write()
+		sys.stdout.write(chr(memory[memoryPosition]))
 
 	elif code[codePosition] == ",": #input current cell ASCII character --> value
 
