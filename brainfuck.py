@@ -72,6 +72,7 @@ while codePosition < len(code):
 				if code[codePosition] == "[" and brackets == 0:
 					break
 				elif code[codePosition] == "]":
+					brackets += 1
 				elif code[codePosition] == "[":
 					brackets -= 1
 				codePosition -=1
