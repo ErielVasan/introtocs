@@ -13,46 +13,46 @@ if code == "":
 	sys.exit
 
 codePosition = 0
-register = [0]
-registerPosition = 0
+registry = [0]
+registryPosition = 0
 
 #Code Execution
 
 while codePosition < len(code):
 
 	if code[codePosition] == ">": #Move the pointer to the right
-		registerPosition += 1
-		if len(register) <= registerPosition:
-			register.append(0)
-		if registerPosition > 30000: #Register overflow check
-			print "Error! Register overflow!"
+		registryPosition += 1
+		if len(registry) <= registryPosition:
+			registry.append(0)
+		if registryPosition > 30000: #Registry overflow check
+			print "Error! Registry overflow!"
 			sys.exit
 	
 	elif code[codePosition] == "<": #Move the pointer to the left
-		registerPosition -= 1
-		if registerPosition < 0: #Register underflow check
-			print "Error! Register underflow!"
+		registryPosition -= 1
+		if registryPosition < 0: #Registry underflow check
+			print "Error! Registry underflow!"
 			sys.exit
 
 	elif code[codePosition] == "+": #Increment the memory cell under the pointer
-		register[registerPosition] += 1
-		if register[registerPosition] > 255: #Byte overflow, returns to 0
-			register[registerPosition] = 0
+		registry[registryPosition] += 1
+		if registry[registryPosition] > 255: #Byte overflow, returns to 0
+			registry[registryPosition] = 0
 
 	elif code[codePosition] == "-": #Decrement the memory cell under the pointer
-		register[registerPosition] -= 1
-		if register[registerPosition] < 0: #Byte undeflow returns to 255
-			register[registerPosition] = 255
+		registry[registryPosition] -= 1
+		if registry[registryPosition] < 0: #Byte undeflow returns to 255
+			registry[registryPosition] = 255
 
 	elif code[codePosition] == ".": #Output the character signified by the cell at the pointer
-		sys.stdout.write(chr(register[registerPosition]))
+		sys.stdout.write(chr(registry[registryPosition]))
 
 	elif code[codePosition] == ",": #Input a character and store it in the cell at the pointer
 		read = raw_input()
-		register[registerPosition] = ord(read[0])
+		registry[registryPosition] = ord(read[0])
 
 	elif code[codePosition] == "[": #Jump past the matching ] if the cell under the pointer is 0
-		if register[registerPosition] == 0:
+		if registry[registryPosition] == 0:
 			brackets = 0
 			codePosition += 1
 			while codePosition < len(code): #Finding the right bracket to close
@@ -65,7 +65,7 @@ while codePosition < len(code):
 				codePosition +=1
 
 	elif code[codePosition] == "]": #Jump back to the matching [ if the cell under the pointer is nonzero
-		if register[registerPosition] != 0:
+		if registry[registryPosition] != 0:
 			brackets = 0
 			codePosition -= 1
 			while codePosition < len(code): #Finding the right bracket to continue looping
