@@ -1,15 +1,19 @@
-import sys, random, threading
+import sys, random
 
 def checkrow(word, square, row, found):
 	for column in xrange(100-len(word)):
-		if word == square[row][column]:
+		if word == square[row][column:column+len(word)]:
 			found = True
 			break
 	return found
 
+
 def checkcolumn(word, square, column, found):
 	for row in xrange(100-len(word)):
-		if word == square[row][column]:
+		compare = ""
+		for i in xrange(len(word)):
+			compare += square[row + i][column] 
+		if word == compare:
 			found = True
 			break
 	return found
@@ -37,19 +41,21 @@ square = []
 for rows in xrange(100):
 	square.append([]) 
 	for columns in xrange(100):
-		square[rows].append(random.sample(chars, 1))
+		random.shuffle(chars)
+		square[rows].append(chars[0])
 
 #The actual wordsearch
 
-output = ""
+output = []
 
 for i in xrange(len(dictionary)):
-	found = False
+	foundr = False
+	foundc = False
 	for x in xrange(100):
-		t1 = threading.Thread(target=checkrow, args=(dictionary[i], square, x, found,))
-		t2 = threading.Thread(target=checkcolumn, args=(dictionary[i], square, x, found,))
-		if found == True:
-			output += dictionary[i]
+		foundr = checkrow(dictionary[i], square, x, foundr)
+		foundc = checkcolumn(dictionary[i], square, x, foundc)
+		if foundc == True or foundr == True:
+			output.append(dictionary[i])
 			break
 
 #Printing the words of the square
@@ -58,5 +64,7 @@ print "The words that are in the square are:"
 if output == "":
 	print "No word was found"
 else:
+	pass
+	print output
 	for x in xrange(len(output)):
 		print output[x]
