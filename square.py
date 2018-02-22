@@ -1,5 +1,7 @@
 import sys, random
 
+#Function to check the rows of the square
+
 def checkrow(word, square, row, found):
 	for column in xrange(100-len(word)):
 		if word == square[row][column:column+len(word)]:
@@ -7,6 +9,7 @@ def checkrow(word, square, row, found):
 			break
 	return found
 
+#Function to check the columns
 
 def checkcolumn(word, square, column, found):
 	for row in xrange(100-len(word)):
@@ -64,7 +67,4 @@ print "The words that are in the square are:"
 if output == "":
 	print "No word was found"
 else:
-	pass
 	print output
-	for x in xrange(len(output)):
-		print output[x]
