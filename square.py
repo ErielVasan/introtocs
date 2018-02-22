@@ -64,7 +64,7 @@ for i in xrange(len(dictionary)):
 #Printing the words of the square
 
 print "The words that are in the square are:"
-if output == "":
+if output == []:
 	print "No word was found"
 else:
 	print output
