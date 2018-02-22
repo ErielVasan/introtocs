@@ -1,11 +1,5 @@
 import random
 
-#giving 5 numbers to a player
-
-def player_numbers(pool):
-	player = pool[:5]
-	return player
-
 #check for win of a player
 
 def win_check(win, numleft):
@@ -42,9 +36,8 @@ def bingo(announcements):
 	players = []
 	num_left = []
 	for i in xrange(100):
-		players.append(player_numbers(pool))
+		players.append(random.sample(pool,5))
 		num_left.append(5)
-		random.shuffle(pool)
 
 	#The actual game
 
